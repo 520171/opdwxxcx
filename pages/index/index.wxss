@@ -1,0 +1,159 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+page{
+  background: #DEDEDE;
+  display: flex;
+}
+
+.nameMsg, .jobNoMsg, .departmentMsg, .malfunctionMsg{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.txArea{
+  margin-top: 15rpx;
+  border-width: 1rpx;
+  border-style: solid;
+  height: 200rpx;
+  width: 100%;
+}
+
+
+
+.main, form{
+  background: #DEDEDE;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+picker{
+  border-style: solid;
+  border-width: 1rpx;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+  display:flex; 
+}
+
+.warn{
+  height: 40rpx;
+  width: 40rpx;
+  margin-left: 20rpx; 
+}
+
+.name, .department, .jobNo{
+  width: 40%;
+}
+
+/*  github*/
+
+.optClass{
+    background-color: #fff;
+    box-sizing: border-box;
+    font-size: 32rpx;
+    color: #333;
+    display: flex;
+    align-items: center;
+    padding:0 30rpx;
+    flex-wrap:wrap;
+}
+.optClass .optName{
+    width: 200rpx;
+}
+.optClass .optName text,.optClass .mesTit text{
+    color: #ce0a0a;
+}
+.optClass .optContent{
+    flex: 1;
+    text-align: right;
+    color: #666;
+    font-size: 32rpx;
+    font-size:24rpx;
+    color:#999;
+}
+
+.optClass .uploadimgbox{
+    flex: 0 0 33.3333%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10rpx;
+    margin-bottom: 10rpx;
+}
+.optClass .uploadimgbox .progress{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 208rpx;
+    z-index: 99;
+}
+.optClass .uploadimgbox .delbtn{
+    width: 50rpx;
+    height: 50rpx;
+    position: absolute;
+    top: 10rpx;
+    right: 10rpx;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    font-size: 30rpx;
+    text-align: center;
+    line-height: 50rpx;
+    z-index: 98;
+}
+.optClass .uploadimg,.optClass .uploadbtn{
+    display: block;
+    width: 100%;
+    height: 208rpx;
+}
+
+.subBtnBox .subBtn{
+    width: 80%;
+    display: block;
+    background-color: #ce0a0a;
+    color: #fff;
+    font-size: 32rpx;
+}
+.subBtnBox .subBtn.button-hover{
+    background-color: #ce0a0a;
+}
+.gitH,.mine,.subBtnBox{
+  margin:30rpx;
+  background: #FFFFFF;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.subBtnBox{
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

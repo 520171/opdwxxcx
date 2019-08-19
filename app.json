@@ -1,0 +1,31 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/logs/logs"
+   
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "维修",
+      "iconPath": "imgs/维修.png",
+      "selectedIconPath": "imgs/维修2.png"
+    },
+    {
+      "pagePath": "pages/list/list",
+      "text": "记录",
+      "iconPath": "imgs/list.png",
+      "selectedIconPath": "imgs/list2.png"
+    }],
+    "color": "#bfbfbf",
+    "selectedColor": "#ce0a0a"
+  }
+}

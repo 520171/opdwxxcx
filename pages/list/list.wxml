@@ -1,0 +1,19 @@
+<!--pages/list/list.wxml-->
+<view>
+  <block wx:for="{{handleMsg}}" wx:key>
+    <view>
+      <button class="malfunctionMsg">
+        <view class="v1">
+          <text class="malfunctionType">报修类型：{{item.malfunctionNo}}</text>
+          <text class="reqTime">申请时间：{{item.date}}</text>
+        </view>
+        <view class="v2">
+          <text class="resMsg">回复内容：{{item.laMsg}}</text>
+        </view>
+        <view class="v3">
+          <text class="resTime">回复时间：{{item.resDate}}</text>
+        </view>
+      </button>
+    </view>
+  </block>
+</view>

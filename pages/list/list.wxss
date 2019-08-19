@@ -1,0 +1,35 @@
+/* pages/list/list.wxss */
+page{
+  background: #DEDEDE;
+}
+
+.malfunctionMsg{
+  background: #FFFFFF;
+  height: fit-content;
+  margin: 20rpx;
+  font-size: 25rpx;
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx;
+}
+
+.v1{
+  width: 100%;
+}
+.v3{
+   width: 100%;
+}
+.v2{
+  width: 100%;
+  align-items: flex-start;
+}
+.malfunctionType{
+  float: left;
+}
+.reqTime, .resTime{
+  float: right;
+}
+
+.resMsg{
+  float: left;
+}

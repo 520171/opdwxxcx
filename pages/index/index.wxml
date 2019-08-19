@@ -1,0 +1,78 @@
+<!--index.wxml-->
+<view class="container" hidden="true">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+
+
+<view class="main">
+  <form bindsubmit="subFormData">
+    <view class="mine">
+      
+        <view class="nameMsg">
+          <text decode="{{true}}">姓&emsp;&emsp;名：&nbsp;</text>
+          <input type="text" value="{{name}}" disabled="true" name="name" class="name"></input>
+        </view>
+        <view class="jobNoMsg">
+          <text decode="{{true}}">工&emsp;&emsp;号：&nbsp;</text>
+          <input type="text" value="{{jobNo}}" disabled="true" name="jobNo" class="jobNo"></input>
+        </view>
+        <view class="departmentMsg">
+          <text decode="{{true}}">部门名称：&nbsp;</text>
+          <input type="text" value="{{department}}" disabled="true" name="department" class="department"></input>
+        </view>
+        <view class="malfunctionMsg">
+          报修类型：
+          <picker bindchange="bindPickerChange" value="{{malfunctionNo}}" range="{{malfunctionType}}" name="malfunctionType">
+            <view class="picker">
+              <text class="malfunction">{{malfunctionType[malfunctionNo]}}</text>
+            </view> 
+          </picker>
+          <image class="warn" src="../../imgs/warn.svg" hidden="{{warn}}"></image>
+        </view>
+        <view class="areaBox">
+          <textarea class="txArea" name="msg" placeholder="请简单描述故障的现象" disabled="{{!canUse}}"></textarea>
+        </view>
+      
+    </view>
+  <!-- github -->
+    <view class="gitH">
+      <view class="optClass">
+          <view class='optName'>附件</view> 
+          <view class='optContent' >可上传图片或视频</view>
+      </view>
+      <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
+          <view class='uploadimgbox' wx:for="{{upImgArr}}" wx:key="item">
+              <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
+              <cover-view class='progress' wx:if="{{upFilesProgress}}">
+                  {{item.progress}}%
+              </cover-view>
+              <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile'>X</cover-view>
+          </view>
+          <view class='uploadimgbox' wx:for="{{upVideoArr}}" wx:key="item">
+              <video class='uploadimg' src="{{item.tempFilePath}}"  controls ></video>
+            <cover-view class='progress' wx:if="{{upFilesProgress}}">
+                  {{item.progress}}%
+              </cover-view>
+              <cover-view class='delbtn' data-index="{{index}}" data-type="video" bindtap='delFile'>X</cover-view>
+          </view>
+          
+          <view class='uploadimgbox' wx:if="{{upFilesBtn}}">
+              <image class='uploadbtn' bindtap='uploadFiles' src='./addimgsbtn.png' mode='widthFix'></image>
+          </view>
+          
+      </view>
+    </view>
+    <view class='subBtnBox'>
+      <button class='subBtn' type='warn' disabled="{{!canUse}}" form-type="submit" >我要报修</button>
+    </view>
+  </form>
+</view>

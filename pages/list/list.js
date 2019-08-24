@@ -93,7 +93,7 @@ Page({
           duration: 2000
         })
         _this.setData({
-          msg: res.data.message.reverse(),
+          msg: res.data.message,
           success: true
         });
         _this.handleMsg();

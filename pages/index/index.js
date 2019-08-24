@@ -215,7 +215,8 @@ Page({
       },
       success: function (res) {
         console.log(res.data);
-        _this.postImg();
+        //将响应的报修表的id回传到图片提交的方法中
+        _this.postImg(res.data.insertId);
         wx.showToast({
           title: '提交成功',
           icon: 'success',
@@ -224,7 +225,7 @@ Page({
       },
     })
   },
-  postImg(){
+  postImg(insertId){
     let _this = this;
     let upData = {};
     let upImgArr = _this.data.upImgArr;
@@ -235,7 +236,8 @@ Page({
       upFilesProgress: true
     })
     upData['url'] = config.service.upFiles;
-    upData.formData = { aaa: 666, bbb: 777 };
+    //传递报修表的id
+    upData.formData = { insertId:insertId };
     upFiles.upFilesFun(_this, upData, function (res) {
       if (res.index < upImgArr.length) {
         upImgArr[res.index]['progress'] = res.progress
@@ -256,6 +258,4 @@ Page({
     })
     //
   }
-
-
 })

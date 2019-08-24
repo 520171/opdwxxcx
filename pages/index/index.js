@@ -14,9 +14,12 @@ Page({
 
     warn: true, //控制报修类型是否显示警告图标，true:不显示，false显示
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+
     name: "",
-    department: "",
+    department: 0,
     jobNo: "",
+    gender: 0,
+    departmentName:[NaN, '信息管理部', '人力资源部', '财务部', '营销部', '电机部', '采购部', '总经办', '生产部', '仓库', '质检部', '电气部', '研发部', '电子科技部'],
     malfunctionNo: 0,
     malfunctionType: ['--请选择故障类型--', '---电脑故障---', '---打印机故障---', '---其他问题---'],
     date: '',
@@ -68,12 +71,13 @@ Page({
 
     if (0 === app.globalData.jobNo.length){
       app.showTips("使用提示", '请扫个人报修码进行设备报修', false);
-      //this.setData({ canUse: false });
+      this.setData({ canUse: false });
     }else{
       this.setData({
         name: app.globalData.name,
         department: app.globalData.department,
-        jobNo: app.globalData.jobNo
+        jobNo: app.globalData.jobNo,
+        gender: app.globalData.gender
       })
     }
     console.log(this);
@@ -185,21 +189,53 @@ Page({
       app.showTips("提交失败", "请选择报修类型！！！", false);
       return;
     }
-
+    let date = util.formatTime(new Date());
+    this.data.detailMsg = e.detail.value.msg;
+    this.data.date = date;
+    this.postMsg();
+  },
+  //提交请求
+  postMsg: function(){
+    var _this = this;
+    console.log(this.data);
+    wx.request({
+      url: "http://111.230.184.6:8000/users/repair",
+      method: "POST",
+      data: {
+        name: this.data.name,
+        department: this.data.department,
+        jobNo: this.data.jobNo,
+        gender: this.data.gender,
+        malfunctionNo: this.data.malfunctionNo,
+        detailMsg: this.data.detailMsg,
+        date: this.data.date
+      },
+      header: {
+        "Content-Type": 'application/json;charset=UTF-8'
+      },
+      success: function (res) {
+        console.log(res.data);
+        _this.postImg();
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 2000
+        })
+      },
+    })
+  },
+  postImg(){
     let _this = this;
     let upData = {};
     let upImgArr = _this.data.upImgArr;
     let upVideoArr = _this.data.upVideoArr;
-    let date = util.formatTime(new Date());
-
     console.log(upImgArr);
     console.log(upVideoArr);
     _this.setData({
-      upFilesProgress: true,
-      detailMsg: e.detail.value.msg,
-      date : date
+      upFilesProgress: true
     })
     upData['url'] = config.service.upFiles;
+    upData.formData = { aaa: 666, bbb: 777 };
     upFiles.upFilesFun(_this, upData, function (res) {
       if (res.index < upImgArr.length) {
         upImgArr[res.index]['progress'] = res.progress
@@ -218,34 +254,8 @@ Page({
       // success
       console.log(arr)
     })
-    _this.postMsg();
-  },
-  //提交请求
-  postMsg: function(){
-    console.log(this.data);
-    wx.request({
-      url: "http://111.230.184.6:8000/",
-      method: "POST",
-      data: {
-        name: this.data.name,
-        department: this.data.department,
-        jobNo: this.data.jobNo,
-        malfunctionNo: this.data.malfunctionNo,
-        detailMsg: this.data.detailMsg,
-        date: this.data.date
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      success: function (res) {
-        console.log(res.data);
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000
-        })
-      },
-    })
+    //
   }
+
 
 })

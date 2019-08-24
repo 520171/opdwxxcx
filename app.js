@@ -37,20 +37,25 @@ App({
     userInfo: null,
     name: "",
     jobNo: "",
-    department: ""
+    department: 0,
+    gender: 0,
+    datail: []
   },
   onLaunch: function(option){
     let name = option.query.name;
-    let jobNo = option.query.jobNo;
-    let department = option.query.department;
+    let jobNo = parseInt(option.query.jobNo);
+    let department = parseInt(option.query.department);
+    let gender = option.query.gender;
 
-    name = name? name : "";
-    jobNo = jobNo ? jobNo : "";
-    department = department ? department : "";
+    name = name? name : "测试1";
+    jobNo = jobNo ? jobNo : "1001";
+    department = isNaN(department) ? 1 : department;
+    gender = isNaN(gender) ? 0 : gender;
 
     this.globalData.name = name;
     this.globalData.jobNo = jobNo;
     this.globalData.department = department;
+    this.globalData.gender = gender;
   },
   //显示对话框
   showTips: function (title, msg, showCancel) {

@@ -1,0 +1,43 @@
+<!--pages/details/details.wxml-->
+<view class="main">
+  <view class="baseMsg">
+    <view class="baseMsgTitle">
+      <view>报修人基本信息</view>
+    </view>
+    <view class="nameMsg">
+      <text decode="{{true}}">姓&emsp;&emsp;名：&nbsp;{{detail.u_name}}</text>
+    </view>
+      <view class="genderMsg">
+      <text decode="{{true}}">性&emsp;&emsp;别：&nbsp;{{detail.u_gender?'男':'女'}}</text>
+    </view>
+    <view class="jobNoMsg">
+      <text decode="{{true}}">工&emsp;&emsp;号：&nbsp;{{detail.u_jobno}}</text>
+    </view>
+    <view class="departmentMsg">
+      <text decode="{{true}}">所属部门：&nbsp;{{detail.d_name}}</text>
+    </view>
+  </view>
+
+  <view class="content">
+    <view class="contentTitle">
+      <view>报修内容</view>
+    </view>
+    <view class="malfunctionMsg">
+      报修类型：{{malfunctionType[detail.s_type]}}
+    </view>
+    <view class="reqDate">
+      报修时间：{{detail.s_date}}
+    </view>
+    <view class="describe">
+      <text decode="{{true}}">问题描述：{{detail.s_msg}}</text>
+    </view>
+  </view>
+
+  <view class="more">
+    <view class="moreTitle">
+      <view>附件信息</view>
+    </view>
+  </view>
+
+
+</view>

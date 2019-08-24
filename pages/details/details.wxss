@@ -1,0 +1,35 @@
+/* pages/details/details.wxss */
+
+page{
+  background: #DEDEDE;
+  display: flex;
+}
+
+.main{
+  background: #DEDEDE;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.baseMsg,.content, .more{
+  margin:20rpx 20rpx 0rpx 20rpx;
+  background: #FFFFFF;
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.nameMsg, .jobNoMsg, .departmentMsg, .malfunctionMsg, 
+.genderMsg, .describe, .reqDate{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.baseMsgTitle, .contentTitle, .moreTitle{
+  color: #797979;
+  font-size: 25rpx;
+  display: flex;
+  justify-content: center; 
+
+}

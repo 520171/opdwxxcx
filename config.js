@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://www.baidu.com';
+var host = 'http://111.230.184.6';
 
 var config = {
 
@@ -12,7 +12,8 @@ var config = {
         host,
 
         // 上传图片 上传视频
-        upFiles: `${host}/product/productUploadFile`,
+        //upFiles: `${host}/product/productUploadFile`,
+      upFiles: `${host}:8000/users/uploadImage`,
     }
 };
 

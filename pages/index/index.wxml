@@ -16,7 +16,6 @@
 <view class="main">
   <form bindsubmit="subFormData">
     <view class="mine">
-      
         <view class="nameMsg">
           <text decode="{{true}}">姓&emsp;&emsp;名：&nbsp;</text>
           <input type="text" value="{{name}}" disabled="true" name="name" class="name"></input>
@@ -27,7 +26,7 @@
         </view>
         <view class="departmentMsg">
           <text decode="{{true}}">部门名称：&nbsp;</text>
-          <input type="text" value="{{department}}" disabled="true" name="department" class="department"></input>
+          <input type="text" value="{{departmentName[department]}}" disabled="true" name="department" class="department"></input>
         </view>
         <view class="malfunctionMsg">
           报修类型：

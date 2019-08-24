@@ -1,19 +1,28 @@
 <!--pages/list/list.wxml-->
-<view>
-  <block wx:for="{{handleMsg}}" wx:key>
+<view class="main">
+  <view class="msg" wx:if="{{success}}">
+    <block wx:for="{{handleMsg}}" wx:key>
+      <view>
+        <button class="malfunctionMsg" bindtap="detail" data-index="{{index}}">
+          <view class="v1">
+            <text class="malfunctionType">报修类型：{{item.s_type}}</text>
+            <text class="name">申请人：{{item.u_name}}</text>
+          </view>
+          <view class="v2">
+            <text class="resMsg">问题描述：{{item.s_msg}}</text>
+          </view>
+          <view class="v3">
+            <text class="reqTime">申请时间：{{item.s_date}}</text>
+          </view>
+        </button>
+      </view>
+    </block>
+  </view>
+  <view wx:else class="problem">
     <view>
-      <button class="malfunctionMsg">
-        <view class="v1">
-          <text class="malfunctionType">报修类型：{{item.malfunctionNo}}</text>
-          <text class="reqTime">申请时间：{{item.date}}</text>
-        </view>
-        <view class="v2">
-          <text class="resMsg">回复内容：{{item.laMsg}}</text>
-        </view>
-        <view class="v3">
-          <text class="resTime">回复时间：{{item.resDate}}</text>
-        </view>
-      </button>
+      <image class="problemImg" src="../../imgs/problem.svg">
+      </image>
+      <view class="font">加载出错了...</view>
     </view>
-  </block>
+  </view>
 </view>

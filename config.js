@@ -16,5 +16,4 @@ var config = {
       upFiles: `${host}:8000/users/uploadImage`,
     }
 };
-
 module.exports = config;

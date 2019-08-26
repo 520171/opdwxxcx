@@ -39,7 +39,10 @@ App({
     jobNo: "",
     department: 0,
     gender: 0,
-    datail: []
+    detail: [],
+    //记录图片或视频数组
+    annexImgs: [],
+    annexVideos: []
   },
   onLaunch: function(option){
     let name = option.query.name;

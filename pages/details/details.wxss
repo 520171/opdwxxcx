@@ -3,6 +3,7 @@
 page{
   background: #DEDEDE;
   display: flex;
+  width: 100%;
 }
 
 .main{
@@ -26,10 +27,34 @@ page{
   flex-direction: row;
   width: 100%;
 }
-.baseMsgTitle, .contentTitle, .moreTitle{
+.baseMsgTitle, .contentTitle, .moreTitle, .dialogTitle{
   color: #797979;
   font-size: 25rpx;
   display: flex;
   justify-content: center; 
 
 }
+.annex{
+  box-sizing: border-box;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  flex-wrap:wrap;
+}
+.imgbox{
+  flex: 0 0 33.3333%;
+  position: relative;
+  box-sizing: border-box;
+  padding: 10rpx;
+}
+.img{
+    width:100%;
+    margin-bottom: 10rpx;
+    height: 208rpx;
+}
+
+.dialogs{
+  background: #DEDEDE;
+  height: 600rpx;
+}
+

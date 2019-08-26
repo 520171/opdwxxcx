@@ -117,22 +117,51 @@ Page({
     this.setData({handleMsg: msg});
   },
   detail(event){
-    console.log(event.target.dataset.index);
-    wx.navigateTo({
-      url: `../details/details?index=${event.target.dataset.index}`,
-      events: {
-        // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
-        acceptDataFromOpenedPage: function (data) {
-          console.log(data)
-        },
-        someEvent: function (data) {
-          console.log(data)
-        }
+    let index = event.target.dataset.index;
+    console.log(index);
+    let sid = app.globalData.detail[index].s_id;
+    this.getAnnex(index, sid);
+  },
+  getAnnex(index, sid) {
+    let _this = this;
+    wx.request({
+      url: "http://111.230.184.6:8000/users/getAnnex",
+      method: "POST",
+      data: {
+        sid: sid
+      },
+      header: {
+        "Content-Type": 'application/json;charset=UTF-8'
       },
       success: function (res) {
-        // 通过eventChannel向被打开页面传送数据
-        res.eventChannel.emit('acceptDataFromOpenerPage', { data: 'test' })
+        //console.log(res.data);
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 2000
+        })
+        console.log(res.data.message);
+        _this.handleAnnex(res.data.message);
+        console.log(app.globalData.annexImgs);
+        console.log(app.globalData.annexVideos);
+        wx.navigateTo({
+          url: `../details/details?index=${index}`
+        });
+      },
+      fail: function () {
+        _this.setData({ success: false })
       }
     })
+  },
+  handleAnnex(annexes){
+    app.globalData.annexImgs.length = 0;
+    app.globalData.annexVideos.length = 0;
+    for (let item of annexes){
+      if(item.a_isImg){
+        app.globalData.annexImgs.push(item.a_url);
+      }else{
+        app.globalData.annexVideos.push(item.a_url);
+      }
+    }
   }
 })

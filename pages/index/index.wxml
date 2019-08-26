@@ -68,7 +68,6 @@
               <image class='uploadbtn' bindtap='uploadFiles' src='./addimgsbtn.png' mode='widthFix'></image>
           </view>
       </view>
-      
     </view>
     <view class='subBtnBox'>
       <button class='subBtn' type='warn' disabled="{{!canUse}}" form-type="submit" >我要报修       </button>

@@ -32,28 +32,24 @@
       <text decode="{{true}}">问题描述：{{detail.s_msg}}</text>
     </view>
   </view>
-
   <view class="more">
     <view class="moreTitle">
       <view>附件信息</view>
-      <view class="optClass" style='padding:0 30rpx;flex-wrap:wrap;'>
-          <view class='uploadimgbox' wx:for="{{upImgArr}}" wx:key="item">
-              <image class='uploadimg' src='{{item.path}}' data-presrc="{{item.path}}" bindtap='previewImg' mode='aspectFill'></image>
-              <cover-view class='progress' wx:if="{{upFilesProgress}}">
-                  {{item.progress}}%
-              </cover-view>
-              <cover-view class='delbtn' data-index="{{index}}" data-type="image" bindtap='delFile'>X</cover-view>
-          </view>
-          <view class='uploadimgbox' wx:for="{{upVideoArr}}" wx:key="item">
-              <video class='uploadimg' src="{{item.tempFilePath}}"  controls ></video>
-            <cover-view class='progress' wx:if="{{upFilesProgress}}">
-                  {{item.progress}}%
-              </cover-view>
-              <cover-view class='delbtn' data-index="{{index}}" data-type="video" bindtap='delFile'>X</cover-view>
-          </view>
+    </view>
+    <view class="annex">
+      <view class='imgbox' wx:for="{{imgsArr}}" wx:key="item">
+          <image class='img' src='{{item}}' data-presrc="{{item}}" bindtap='previewImg'></image>
+      </view>
+      <view class='imgbox' wx:for="{{videosArr}}" wx:key="item">
+          <video class='img' src="{{item}}"  controls ></video>
       </view>
     </view>
   </view>
-
-
+  <view class="content">
+    <view class="dialogTitle">
+      <view>留言记录</view>
+    </view>
+    <view class="dialogs">
+    </view>
+  </view>
 </view>

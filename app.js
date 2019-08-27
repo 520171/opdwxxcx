@@ -38,6 +38,7 @@ App({
     name: "",
     jobNo: "",
     department: 0,
+    departmentName:'',
     gender: 0,
     detail: [],
     //记录图片或视频数组
@@ -45,20 +46,53 @@ App({
     annexVideos: []
   },
   onLaunch: function(option){
+    let _this = this;
     let name = option.query.name;
     let jobNo = parseInt(option.query.jobNo);
     let department = parseInt(option.query.department);
     let gender = option.query.gender;
 
-    name = name? name : "测试1";
-    jobNo = jobNo ? jobNo : "1001";
+    name = name? name : "efg";
+    jobNo = jobNo ? jobNo : "1002";
     department = isNaN(department) ? 1 : department;
     gender = isNaN(gender) ? 0 : gender;
 
-    this.globalData.name = name;
-    this.globalData.jobNo = jobNo;
-    this.globalData.department = department;
-    this.globalData.gender = gender;
+    if (name.length && jobNo.length){
+      wx.request({
+        url: "http://111.230.184.6:8000/users/login",
+        method: "POST",
+        data: {
+          jobNo: jobNo,
+          name: name
+        },
+        header: {
+          "Content-Type": 'application/json;charset=UTF-8'
+        },
+        success: function (res) {
+          console.log(res.data);
+          if ('fail' != res.data.message) {
+            _this.globalData.name = res.data.msg[0].u_name;
+            _this.globalData.jobNo = res.data.msg[0].u_jobno;
+            _this.globalData.department = res.data.msg[0].d_no;
+            _this.globalData.departmentName = res.data.msg[0].d_name;
+            _this.globalData.gender = res.data.msg[0].u_gender;
+          } else {
+            _this.globalData.name = "";
+            _this.globalData.jobNo = "";
+            _this.globalData.department = "";
+            _this.globalData.gender = 0;
+
+          }
+        },
+        fail: function () {
+          _this.globalData.name = "";
+          _this.globalData.jobNo = "";
+          _this.globalData.department = "";
+          _this.globalData.gender = 0;
+        }
+      })
+    }
+
   },
   //显示对话框
   showTips: function (title, msg, showCancel) {

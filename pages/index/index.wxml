@@ -26,7 +26,7 @@
         </view>
         <view class="departmentMsg">
           <text decode="{{true}}">部门名称：&nbsp;</text>
-          <input type="text" value="{{departmentName[department]}}" disabled="true" name="department" class="department"></input>
+          <input type="text" value="{{departmentName}}" disabled="true" name="department" class="department"></input>
         </view>
         <view class="malfunctionMsg">
           报修类型：

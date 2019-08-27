@@ -19,7 +19,7 @@ Page({
     department: 0,
     jobNo: "",
     gender: 0,
-    departmentName:[NaN, '信息管理部', '人力资源部', '财务部', '营销部', '电机部', '采购部', '总经办', '生产部', '仓库', '质检部', '电气部', '研发部', '电子科技部'],
+    departmentName:"",
     malfunctionNo: 0,
     malfunctionType: ['--请选择故障类型--', '---电脑故障---', '---打印机故障---', '---其他问题---'],
     date: '',
@@ -77,7 +77,8 @@ Page({
         name: app.globalData.name,
         department: app.globalData.department,
         jobNo: app.globalData.jobNo,
-        gender: app.globalData.gender
+        gender: app.globalData.gender,
+        departmentName: app.globalData.departmentName
       })
     }
     console.log(this);

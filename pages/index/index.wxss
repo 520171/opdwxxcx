@@ -144,10 +144,15 @@ picker{
 }
 .gitH,.mine,.subBtnBox{
   margin:20rpx;
-  background: #FFFFFF;
   padding: 30rpx;
   display: flex;
   flex-direction: column;
+
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background: #FFFFFF;
 }
 
 .subBtnBox{
@@ -155,5 +160,6 @@ picker{
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #FFFFFF
 }
 

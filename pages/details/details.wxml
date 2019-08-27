@@ -50,6 +50,17 @@
       <view>留言记录</view>
     </view>
     <view class="dialogs">
+      <scroll-view>
+        <block wx:for="{{dialogs}}" wx:key>
+          <view class='dialog'>
+            <view>{{item.u_jobno == detail.u_jobno?'我': item.u_name}}：</view>
+            <view>item.da_msg</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class='leaveMsg'>
+      <textarea></textarea><button class='myBtn'>留言</button>
     </view>
   </view>
 </view>

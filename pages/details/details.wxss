@@ -19,6 +19,11 @@ page{
   padding: 30rpx;
   display: flex;
   flex-direction: column;
+
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
 }
 
 .nameMsg, .jobNoMsg, .departmentMsg, .malfunctionMsg, 
@@ -56,5 +61,29 @@ page{
 .dialogs{
   background: #DEDEDE;
   height: 600rpx;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.dialog{
+  margin: 20rpx 20rpx 0rpx 20rpx;
+  padding: 10rpx;
+  border-radius: 0px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  background-color: #FFFFFF;
+}
+
+.myBtn{
+  width: fit-content;
+  background-color: #ce0a0a;
+  border-radius: 0px;
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #FFFFFF
 }
 

@@ -70,7 +70,6 @@ page{
 .dialog{
   margin: 20rpx 20rpx 0rpx 20rpx;
   padding: 10rpx;
-  border-radius: 0px;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -79,11 +78,34 @@ page{
 }
 
 .myBtn{
-  width: fit-content;
   background-color: #ce0a0a;
   border-radius: 0px;
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
-  color: #FFFFFF
+  color: #FFFFFF;
+  font-size: 13px;
+  width: 20%;
+  font-family: "微软雅黑";
 }
+
+.leaveMsg{
+  display:flex; 
+  flex-direction:row;
+  margin-top: 20rpx;
+}
+
+.area{
+  border: lightgrey;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  height: 31px;
+  padding-left: 10px;
+  width: 80%;
+
+}
+
+
 

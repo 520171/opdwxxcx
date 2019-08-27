@@ -60,7 +60,8 @@
       </scroll-view>
     </view>
     <view class='leaveMsg'>
-      <textarea></textarea><button class='myBtn'>留言</button>
+      <textarea class="area"></textarea>
+      <button class='myBtn'>留言</button>
     </view>
   </view>
 </view>

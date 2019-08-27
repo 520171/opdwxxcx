@@ -1,5 +1,6 @@
 {
   "usingComponents": {},
   "navigationBarTitleText": "opd报修详情",
-  "navigationBarBackgroundColor": "#bb0909"
+  "navigationBarBackgroundColor": "#bb0909",
+  "backgroundColor": "#DEDEDE"
 }

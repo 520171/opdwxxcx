@@ -216,13 +216,28 @@ Page({
       success: function (res) {
         console.log(res.data);
         //将响应的报修表的id回传到图片提交的方法中
-        _this.postImg(res.data.insertId);
+        if ('fail' != res.data.message){
+          _this.postImg(res.data.insertId);
+          wx.showToast({
+            title: '提交成功',
+            icon: 'success',
+            duration: 2000
+          })
+        }else{
+          wx.showToast({
+            title: '提交失败',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      },
+      fail: function(){
         wx.showToast({
-          title: '提交成功',
+          title: '提交失败',
           icon: 'success',
           duration: 2000
         })
-      },
+      }
     })
   },
   postImg(insertId){

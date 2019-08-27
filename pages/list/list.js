@@ -29,12 +29,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   
+    if (0 === app.globalData.jobNo.length){
+      app.showTips("使用提示", "请扫个人报修码进行设备报修", false);
+      this.setData({ success: false});
+      return;
+    }
     this.getMsg();
-    // if (0 === app.globalData.jobNo.length){
-    //   app.showTips("使用提示", "请扫个人报修码进行设备报修", false);
-    //   return;
-    // }
     
   },
 
@@ -87,17 +87,16 @@ Page({
       },
       success: function (res) {
         //console.log(res.data);
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000
-        })
-        _this.setData({
-          msg: res.data.message,
-          success: true
-        });
-        _this.handleMsg();
-        app.globalData.detail = _this.data.msg;
+        if ('fail' != res.data.message){
+          _this.setData({
+            msg: res.data.message,
+            success: true
+          });
+          _this.handleMsg();
+          app.globalData.detail = _this.data.msg;
+        }else{
+          _this.setData({ success: false });
+        }
       },
       fail: function(){
         _this.setData({success: false})
@@ -135,21 +134,28 @@ Page({
       },
       success: function (res) {
         //console.log(res.data);
+        if ('fail' != res.data.message){
+          console.log(res.data.message);
+          _this.handleAnnex(res.data.message);
+          console.log(app.globalData.annexImgs);
+          console.log(app.globalData.annexVideos);
+          wx.navigateTo({
+            url: `../details/details?index=${index}`
+          });
+        }else{
+          wx.showToast({
+            title: '请求失败',
+            icon: 'success',
+            duration: 2000
+          })
+        }
+      },
+      fail: function () {
         wx.showToast({
-          title: '提交成功',
+          title: '请求失败',
           icon: 'success',
           duration: 2000
         })
-        console.log(res.data.message);
-        _this.handleAnnex(res.data.message);
-        console.log(app.globalData.annexImgs);
-        console.log(app.globalData.annexVideos);
-        wx.navigateTo({
-          url: `../details/details?index=${index}`
-        });
-      },
-      fail: function () {
-        _this.setData({ success: false })
       }
     })
   },

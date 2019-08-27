@@ -1,6 +1,6 @@
 {
   "usingComponents": {},
-  "navigationBarTitleText": "个人报修记录",
+  "navigationBarTitleText": "报修记录",
   "navigationBarBackgroundColor": "#bb0909",
   "enablePullDownRefresh": true,
   "backgroundColor": "#DEDEDE",

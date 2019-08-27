@@ -1,5 +1,5 @@
 // pages/details/details.js
-
+var util = require('../../utils/util.js')
 const app = getApp();
 Page({
 
@@ -11,7 +11,10 @@ Page({
     malfunctionType: ['xxxx', '电脑故障', '打印机故障', '其他问题'],
     imgsArr: [],
     videosArr: [],
-    dialogs: []
+    dialogs: [],
+    txtArea: "",
+
+    success: true
   },
 
   /**
@@ -84,6 +87,9 @@ Page({
       urls: this.data.imgsArr // 需要预览的图片http链接列表
     })
   },
+  onBtnClick(){
+
+  },
   getDialogs() {
     let _this = this;
     wx.request({
@@ -96,19 +102,63 @@ Page({
         "Content-Type": 'application/json;charset=UTF-8'
       },
       success: function (res) {
-        //console.log(res.data);
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000
-        })
-        console.log(res.data.message);
-        _this.setData({dialogs: res.data.message});
+        if ('fail' !=res.data.message){
+          console.log(res.data.message);
+          _this.setData({ dialogs: res.data.message, success: true });
+        }else{
+          _this.setData({ success: false });
+        }
       },
       fail: function () {
-        _this.setData({ success: false })
+        _this.setData({ success: false });
       }
     })
-  }
+  },
+  subDialog(event) {
+    let _this = this;
+    let dialog = event.detail.value.txtArea;
+    if(0 != dialog.length){
+      console.log();
+      wx.request({
+        url: "http://111.230.184.6:8000/users/sendDialog",
+        method: "POST",
+        data: {
+          dialog: dialog,
+          date: util.formatTime(new Date()),
+          sid: _this.data.detail.s_id,
+          jobNo: _this.data.detail.u_jobno
+        },
+        header: {
+          "Content-Type": 'application/json;charset=UTF-8'
+        },
+        success: function (res) {
+          console.log(res.data);
+          if ('fail' != res.data.message){
+            _this.setData({ dialogs: res.data.message, txtArea: "" });
+            wx.showToast({
+              title: '留言成功',
+              icon: 'success',
+              duration: 2000
+            });
+          }else{
+            wx.showToast({
+              title: '留言失败',
+              icon: 'fail',
+              duration: 2000
+            });
+          }
+         
+        },
+        fail: function () {
+          wx.showToast({
+            title: '留言失败',
+            icon: 'fail',
+            duration: 2000
+          });
+        }
+      })
+    }
+   
+  },
 
 })

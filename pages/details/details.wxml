@@ -32,7 +32,7 @@
       <text decode="{{true}}">问题描述：{{detail.s_msg}}</text>
     </view>
   </view>
-  <view class="more">
+  <view class="more" wx:if="{{imgsArr.length || videosArr.length}}">
     <view class="moreTitle">
       <view>附件信息</view>
     </view>
@@ -50,18 +50,29 @@
       <view>留言记录</view>
     </view>
     <view class="dialogs">
-      <scroll-view>
+      <scroll-view class='sv' scroll-y wx:if='{{success}}'>
         <block wx:for="{{dialogs}}" wx:key>
           <view class='dialog'>
-            <view>{{item.u_jobno == detail.u_jobno?'我': item.u_name}}：</view>
-            <view>item.da_msg</view>
+            <view class="dateAndName">
+              <view>{{item.u_jobno == detail.u_jobno?'我': item.u_name}}：</view>
+              <view class="date">{{item.da_date}}</view>
+            </view>
+            <view>{{item.da_msg}}</view>
           </view>
         </block>
       </scroll-view>
+      <view wx:else class="problem">
+        <view>
+          <image class="problemImg" src="../../imgs/problem.svg"></image>
+          <view class="font">加载出错了...</view>
+        </view>
+      </view>
     </view>
-    <view class='leaveMsg'>
-      <textarea class="area"></textarea>
-      <button class='myBtn'>留言</button>
-    </view>
+    <form bindsubmit="subDialog">
+      <view class='leaveMsg'>
+          <textarea class="area" placeholder="" name="txtArea" value="{{txtArea}}"></textarea>
+          <button class='myBtn' form-type="submit" >留言</button>
+      </view>
+    </form>
   </view>
 </view>

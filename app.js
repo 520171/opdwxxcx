@@ -53,8 +53,8 @@ App({
     let department = parseInt(option.query.department);
     let gender = option.query.gender;
 
-    name = name? name : "efg";
-    jobNo = jobNo ? jobNo : "1002";
+    name = name? name : "abc";
+    jobNo = jobNo ? jobNo : "1001";
     department = isNaN(department) ? 1 : department;
     gender = isNaN(gender) ? 0 : gender;
 

@@ -40,6 +40,7 @@ App({
     department: 0,
     departmentName:'',
     gender: 0,
+    
     detail: [],
     //记录图片或视频数组
     annexImgs: [],
@@ -81,7 +82,10 @@ App({
             _this.globalData.jobNo = "";
             _this.globalData.department = "";
             _this.globalData.gender = 0;
-
+            _this.globalData.departmentName="";
+          }
+          if (_this.onReadyCallback){
+            _this.onReadyCallback();
           }
         },
         fail: function () {
@@ -89,6 +93,7 @@ App({
           _this.globalData.jobNo = "";
           _this.globalData.department = "";
           _this.globalData.gender = 0;
+          _this.globalData.departmentName = "";
         }
       })
     }

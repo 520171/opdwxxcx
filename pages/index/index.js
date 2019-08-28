@@ -40,7 +40,41 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function(){},
+  onLoad: function(){
+
+    let _this = this;
+    _this.setData({
+      name: app.globalData.name,
+      department: app.globalData.department,
+      jobNo: app.globalData.jobNo,
+      gender: app.globalData.gender,
+      departmentName: app.globalData.departmentName
+    });
+
+    app.onReadyCallback = function(){
+      _this.setData({
+        name: app.globalData.name,
+        department: app.globalData.department,
+        jobNo: app.globalData.jobNo,
+        gender: app.globalData.gender,
+        departmentName: app.globalData.departmentName
+      });
+      console.log(app.globalData.jobNo.length);
+      if (0 === app.globalData.jobNo.length) {
+        _this.setData({ canUse: false });
+      }else{
+        _this.setData({ canUse: true });
+      }
+      console.log(_this);
+    };
+
+    if (0 === app.globalData.jobNo.length) {
+      _this.setData({ canUse: false });
+    } else {
+      _this.setData({ canUse: true });
+    }
+
+  },
   onShow: function () {
     // if (app.globalData.userInfo) {
     //   this.setData({
@@ -68,21 +102,6 @@ Page({
     //     }
     //   })
     // }
-
-    if (0 === app.globalData.jobNo.length){
-      app.showTips("使用提示", '请扫个人报修码进行设备报修', false);
-      this.setData({ canUse: false });
-    }else{
-      this.setData({
-        name: app.globalData.name,
-        department: app.globalData.department,
-        jobNo: app.globalData.jobNo,
-        gender: app.globalData.gender,
-        departmentName: app.globalData.departmentName
-      })
-    }
-    console.log(this);
-    
   },
   getUserInfo: function(e) {
     console.log(e)

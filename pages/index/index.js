@@ -219,7 +219,7 @@ Page({
     var _this = this;
     console.log(this.data);
     wx.request({
-      url: "http://111.230.184.6:8000/users/repair",
+      url: "http://49.235.246.77:8000/users/repair",
       method: "POST",
       data: {
         name: this.data.name,

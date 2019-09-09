@@ -60,7 +60,7 @@ App({
 
     if (name.length && jobNo.length){
       wx.request({
-        url: "http://111.230.184.6:8000/users/login",
+        url: "http://49.235.246.77:8000/users/login",
         method: "POST",
         data: {
           jobNo: jobNo,

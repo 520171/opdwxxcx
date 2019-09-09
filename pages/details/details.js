@@ -93,7 +93,7 @@ Page({
   getDialogs() {
     let _this = this;
     wx.request({
-      url: "http://111.230.184.6:8000/users/getDialogs",
+      url: "http://49.235.246.77:8000/users/getDialogs",
       method: "POST",
       data: {
         sid: _this.data.detail.s_id
@@ -120,7 +120,7 @@ Page({
     if(0 != dialog.length){
       console.log();
       wx.request({
-        url: "http://111.230.184.6:8000/users/sendDialog",
+        url: "http://49.235.246.77:8000/users/sendDialog",
         method: "POST",
         data: {
           dialog: dialog,

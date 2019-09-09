@@ -77,7 +77,7 @@ Page({
   getMsg(){
     let _this = this;
     wx.request({
-      url: "http://111.230.184.6:8000/users/getMsg",
+      url: "http://49.235.246.77:8000/users/getMsg",
       method: "POST",
       data: {
         jobNo: app.globalData.jobNo
@@ -124,7 +124,7 @@ Page({
   getAnnex(index, sid) {
     let _this = this;
     wx.request({
-      url: "http://111.230.184.6:8000/users/getAnnex",
+      url: "http://49.235.246.77:8000/users/getAnnex",
       method: "POST",
       data: {
         sid: sid

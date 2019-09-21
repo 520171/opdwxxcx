@@ -49,14 +49,16 @@ App({
   onLaunch: function(option){
     let _this = this;
     let name = option.query.name;
-    let jobNo = parseInt(option.query.jobNo);
-    let department = parseInt(option.query.department);
+    let jobNo = option.query.jobNo;
+    let department = option.query.department;
     let gender = option.query.gender;
+    
+    console.log(Boolean(jobNo))
+    console.log(typeof jobNo)
+    console.log(jobNo)
 
     name = name? name : "abc";
     jobNo = jobNo ? jobNo : "1001";
-    department = isNaN(department) ? 1 : department;
-    gender = isNaN(gender) ? 0 : gender;
 
     if (name.length && jobNo.length){
       wx.request({

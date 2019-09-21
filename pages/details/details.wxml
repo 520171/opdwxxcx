@@ -54,7 +54,7 @@
         <block wx:for="{{dialogs}}" wx:key>
           <view class='dialog'>
             <view class="dateAndName">
-              <view>{{item.u_jobno == detail.u_jobno?'我': item.u_name}}：</view>
+              <view>{{item.u_jobno == jobNo?'我': item.u_name}}：</view>
               <view class="date">{{item.da_date}}</view>
             </view>
             <view>{{item.da_msg}}</view>

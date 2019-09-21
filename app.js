@@ -1,3 +1,4 @@
+const host = require('config.js').host;
 //app.js
 App({
   // onLaunch: function (option) {
@@ -40,7 +41,6 @@ App({
     department: 0,
     departmentName:'',
     gender: 0,
-    
     detail: [],
     //记录图片或视频数组
     annexImgs: [],
@@ -60,7 +60,7 @@ App({
 
     if (name.length && jobNo.length){
       wx.request({
-        url: "http://49.235.246.77:8000/users/login",
+        url: `${host}/users/login`,
         method: "POST",
         data: {
           jobNo: jobNo,

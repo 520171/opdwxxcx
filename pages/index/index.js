@@ -4,6 +4,7 @@ var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
 var upFiles = require('../../utils/upFiles.js')
+const host = require('../../config.js').host
 
 const app = getApp();
 Page({
@@ -219,16 +220,17 @@ Page({
     var _this = this;
     console.log(this.data);
     wx.request({
-      url: "http://49.235.246.77:8000/users/repair",
+      url: `${host}/users/repair`,
       method: "POST",
       data: {
         name: this.data.name,
         department: this.data.department,
+        departmentName: app.globalData.departmentName,
         jobNo: this.data.jobNo,
         gender: this.data.gender,
         malfunctionNo: this.data.malfunctionNo,
         detailMsg: this.data.detailMsg,
-        date: this.data.date
+        date: this.data.date,
       },
       header: {
         "Content-Type": 'application/json;charset=UTF-8'

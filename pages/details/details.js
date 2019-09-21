@@ -1,5 +1,6 @@
 // pages/details/details.js
-var util = require('../../utils/util.js')
+const util = require('../../utils/util.js')
+const host = require('../../config.js').host
 const app = getApp();
 Page({
 
@@ -13,7 +14,7 @@ Page({
     videosArr: [],
     dialogs: [],
     txtArea: "",
-
+    jobNo: '',
     success: true
   },
 
@@ -26,7 +27,8 @@ Page({
     this.setData({
       imgsArr: app.globalData.annexImgs,
       videosArr: app.globalData.annexVideos,
-      detail: app.globalData.detail[index]
+      detail: app.globalData.detail[index],
+      jobNo: app.globalData.jobNo
     });
     console.log(this.data.detail);
     this.getDialogs();
@@ -93,7 +95,7 @@ Page({
   getDialogs() {
     let _this = this;
     wx.request({
-      url: "http://49.235.246.77:8000/users/getDialogs",
+      url: `${host}/users/getDialogs`,
       method: "POST",
       data: {
         sid: _this.data.detail.s_id
@@ -115,18 +117,18 @@ Page({
     })
   },
   subDialog(event) {
-    let _this = this;
+    const _this = this;
     let dialog = event.detail.value.txtArea;
     if(0 != dialog.length){
       console.log();
       wx.request({
-        url: "http://49.235.246.77:8000/users/sendDialog",
+        url: `${host}/users/sendDialog`,
         method: "POST",
         data: {
           dialog: dialog,
           date: util.formatTime(new Date()),
           sid: _this.data.detail.s_id,
-          jobNo: _this.data.detail.u_jobno
+          jobNo: _this.data.jobNo
         },
         header: {
           "Content-Type": 'application/json;charset=UTF-8'

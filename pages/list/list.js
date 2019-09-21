@@ -1,6 +1,7 @@
 // pages/list/list.js
 const util = require('../../utils/util.js');
 const app = getApp();
+const host = require('../../config.js').host
 Page({
 
   /**
@@ -77,7 +78,7 @@ Page({
   getMsg(){
     let _this = this;
     wx.request({
-      url: "http://49.235.246.77:8000/users/getMsg",
+      url: `${host}/users/getMsg`,
       method: "POST",
       data: {
         jobNo: app.globalData.jobNo
@@ -124,7 +125,7 @@ Page({
   getAnnex(index, sid) {
     let _this = this;
     wx.request({
-      url: "http://49.235.246.77:8000/users/getAnnex",
+      url: `${host}/users/getAnnex`,
       method: "POST",
       data: {
         sid: sid

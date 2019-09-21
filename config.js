@@ -3,9 +3,10 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'http://49.235.246.77';
+const host = 'https://www.opdgr.cn';
 
 var config = {
+  
 
     // 下面的地址配合云端 Demo 工作
     service: {
@@ -13,7 +14,8 @@ var config = {
 
         // 上传图片 上传视频
         //upFiles: `${host}/product/productUploadFile`,
-      upFiles: `${host}:8000/users/uploadImage`,
+      upFiles: `${host}/users/uploadImage`,
     }
 };
 module.exports = config;
+module.exports.host = host;

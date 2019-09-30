@@ -76,7 +76,7 @@ Page({
   },
   //从服务器获取报修信息
   getMsg(){
-    let _this = this;
+    const _this = this
     wx.request({
       url: `${host}/users/getMsg`,
       method: "POST",
@@ -143,7 +143,8 @@ Page({
           wx.navigateTo({
             url: `../details/details?index=${index}`
           });
-        }else{
+        } else 
+        {
           wx.showToast({
             title: '请求失败',
             icon: 'success',

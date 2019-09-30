@@ -12,7 +12,6 @@
   </view>
 </view>
 
-
 <view class="main">
   <form bindsubmit="subFormData">
     <view class="mine">
@@ -38,9 +37,8 @@
           <image class="warn" src="../../imgs/warn.svg" hidden="{{warn}}"></image>
         </view>
         <view class="areaBox">
-          <textarea class="txArea" name="msg" placeholder="请简单描述故障的现象" disabled="{{!canUse}}"></textarea>
+          <textarea class="txArea" name="msg" placeholder="请简单描述故障的现象" disabled="{{!canUse}}" value="{{textAreaMsg}}"></textarea>
         </view>
-      
     </view>
   <!-- github -->
     <view class="gitH">
@@ -70,7 +68,21 @@
       </view>
     </view>
     <view class='subBtnBox'>
-      <button class='subBtn' type='warn' disabled="{{!canUse}}" form-type="submit" >我要报修       </button>
+      <button class='subBtn' type='warn' disabled="{{!canUse}}" form-type="submit" >
+        我要报修
+      </button>
     </view>
   </form>
+  <view class="describe">
+    <view class='mustKonw'>使用须知</view>
+    <view class="terms">
+      <view>1：用户需扫描个人报修码才能正常使用小程序</view>
+      <view>2：提交报修时，报修类型为必选项</view>
+      <view>3：需要重复登陆多个账号时，需要手动清理小程序后台</view>
+      <view>4：维修选项卡用于用户报修</view>
+      <view>5：记录选项卡用于用户查看报修记录，点击报修记录可查看报修详情和留言</view>
+      <view>6：登陆后，进入报修记录页面如果出现加载出错，可下拉刷新</view>
+    </view>
+  </view>
 </view>
+

@@ -47,32 +47,36 @@ App({
     annexVideos: []
   },
   onLaunch: function(option){
-    let _this = this;
-    let name = option.query.name;
-    let jobNo = option.query.jobNo;
-    let department = option.query.department;
-    let gender = option.query.gender;
-    
-    console.log(Boolean(jobNo))
-    console.log(typeof jobNo)
-    console.log(jobNo)
 
-    name = name? name : "abc";
-    jobNo = jobNo ? jobNo : "1001";
+    // 二维码携带数据
+    const _this = this
+    let name = option.query.name
+    let jobNo = option.query.jobNo
+    name = name || "abc"
+    jobNo = jobNo || "1001"
 
+    // // 登录
+    // wx.login({
+    //   success: res => {
+    //     // 发送 res.code 到后台换取 openId, sessionKey, unionId
+    //     console.log(res)
+    //   },
+    //   fail: function(){
+    //   }
+    // })
     if (name.length && jobNo.length){
       wx.request({
         url: `${host}/users/login`,
         method: "POST",
         data: {
-          jobNo: jobNo,
-          name: name
+          jobNo,
+          name
         },
         header: {
           "Content-Type": 'application/json;charset=UTF-8'
         },
         success: function (res) {
-          console.log(res.data);
+          // console.log(res.data);
           if ('fail' != res.data.message) {
             _this.globalData.name = res.data.msg[0].u_name;
             _this.globalData.jobNo = res.data.msg[0].u_jobno;
@@ -99,7 +103,6 @@ App({
         }
       })
     }
-
   },
   //显示对话框
   showTips: function (title, msg, showCancel) {

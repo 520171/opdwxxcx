@@ -142,17 +142,26 @@ picker{
 .subBtnBox .subBtn.button-hover{
     background-color: #ce0a0a;
 }
-.gitH,.mine,.subBtnBox{
-  margin:20rpx;
+.gitH, .mine, .subBtnBox, .describe{
+  margin:20rpx 20rpx 0rpx;
   padding: 30rpx;
   display: flex;
   flex-direction: column;
-
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   background: #FFFFFF;
+}
+
+.mustKonw {
+  color: red;
+}
+.terms {
+  font-size: 25rpx;
+}
+.describe{
+  margin-bottom: 20rpx;
 }
 
 .subBtnBox{

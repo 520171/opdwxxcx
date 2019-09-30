@@ -1,21 +1,18 @@
 //index.js
 //获取应用实例
-var qcloud = require('../../vendor/wafer2-client-sdk/index')
-var config = require('../../config')
-var util = require('../../utils/util.js')
-var upFiles = require('../../utils/upFiles.js')
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config')
+const util = require('../../utils/util.js')
+const upFiles = require('../../utils/upFiles.js')
 const host = require('../../config.js').host
-
-const app = getApp();
+const app = getApp()
 Page({
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-
     warn: true, //控制报修类型是否显示警告图标，true:不显示，false显示
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
     name: "",
     department: 0,
     jobNo: "",
@@ -25,14 +22,13 @@ Page({
     malfunctionType: ['--请选择故障类型--', '---电脑故障---', '---打印机故障---', '---其他问题---'],
     date: '',
     detailMsg: "",
-
+    textAreaMsg: '',
     //github
     upFilesBtn: true,
     upFilesProgress: false,
     maxUploadLen: 6,
     upImgArr: [],
     upVideoArr: [],
-
     canUse: true
   },
   //事件处理函数
@@ -42,8 +38,7 @@ Page({
     })
   },
   onLoad: function(){
-
-    let _this = this;
+    const _this = this
     _this.setData({
       name: app.globalData.name,
       department: app.globalData.department,
@@ -60,19 +55,19 @@ Page({
         gender: app.globalData.gender,
         departmentName: app.globalData.departmentName
       });
-      console.log(app.globalData.jobNo.length);
+      console.log(app.globalData.jobNo.length)
       if (0 === app.globalData.jobNo.length) {
         _this.setData({ canUse: false });
       }else{
         _this.setData({ canUse: true });
       }
       console.log(_this);
-    };
+    }
 
     if (0 === app.globalData.jobNo.length) {
-      _this.setData({ canUse: false });
+      _this.setData({ canUse: false })
     } else {
-      _this.setData({ canUse: true });
+      _this.setData({ canUse: true })
     }
 
   },
@@ -129,7 +124,7 @@ Page({
   // 预览图片
   previewImg: function (e) {
     let imgsrc = e.currentTarget.dataset.presrc;
-    let _this = this;
+    const _this = this;
     let arr = _this.data.upImgArr;
     let preArr = [];
     arr.map(function (v, i) {
@@ -143,7 +138,7 @@ Page({
   },
   // 删除上传图片 或者视频
   delFile: function (e) {
-    let _this = this;
+    const _this = this;
     wx.showModal({
       title: '提示',
       content: '您确认删除嘛？',
@@ -183,7 +178,7 @@ Page({
     if(!this.data.canUse){
       return;
     }
-    var _this = this;
+    const _this = this
     wx.showActionSheet({
       itemList: ['选择图片', '选择视频'],
       success: function (res) {
@@ -207,18 +202,18 @@ Page({
   subFormData: function (e) {
     if (0 == this.data.malfunctionNo){
       this.setData({warn: false});
-      app.showTips("提交失败", "请选择报修类型！！！", false);
+      app.showTips("提交失败", "请选择报修类型！！！", false)
       return;
     }
-    let date = util.formatTime(new Date());
-    this.data.detailMsg = e.detail.value.msg;
-    this.data.date = date;
-    this.postMsg();
+    let date = util.formatTime(new Date())
+    this.data.detailMsg = e.detail.value.msg
+    this.data.date = date
+    this.postMsg()
   },
   //提交请求
   postMsg: function(){
-    var _this = this;
-    console.log(this.data);
+    const _this = this
+    console.log(this.data)
     wx.request({
       url: `${host}/users/repair`,
       method: "POST",
@@ -230,27 +225,41 @@ Page({
         gender: this.data.gender,
         malfunctionNo: this.data.malfunctionNo,
         detailMsg: this.data.detailMsg,
-        date: this.data.date,
+        date: this.data.date
       },
       header: {
         "Content-Type": 'application/json;charset=UTF-8'
       },
       success: function (res) {
-        console.log(res.data);
-        //将响应的报修表的id回传到图片提交的方法中
+        // console.log(res.data)
+        // 将响应的报修表的id回传到图片提交的方法中
         if ('fail' != res.data.message){
-          _this.postImg(res.data.insertId);
-          wx.showToast({
-            title: '提交成功',
-            icon: 'success',
-            duration: 2000
+          _this.postImg(res.data.insertId, function () {
+            wx.showToast({
+              title: '提交成功',
+              icon: 'success',
+              duration: 2000
+            })
+
+            wx.switchTab({
+              url: '/pages/list/list'
+            })
+            // 重置
+            _this.setData({
+              textAreaMsg: '',
+              malfunctionNo: 0,
+              upFilesProgress: false,
+              upImgArr: [],
+              upVideoArr: []
+            })
           })
-        }else{
+        } else {
           wx.showToast({
             title: '提交失败',
             icon: 'success',
             duration: 2000
           })
+
         }
       },
       fail: function(){
@@ -262,19 +271,19 @@ Page({
       }
     })
   },
-  postImg(insertId){
-    let _this = this;
-    let upData = {};
-    let upImgArr = _this.data.upImgArr;
-    let upVideoArr = _this.data.upVideoArr;
-    console.log(upImgArr);
-    console.log(upVideoArr);
+  postImg(insertId, success){
+    const _this = this
+    let upData = {}
+    let upImgArr = _this.data.upImgArr
+    let upVideoArr = _this.data.upVideoArr
+    console.log(upImgArr)
+    console.log(upVideoArr)
     _this.setData({
       upFilesProgress: true
     })
-    upData['url'] = config.service.upFiles;
+    upData['url'] = config.service.upFiles
     //传递报修表的id
-    upData.formData = { insertId:insertId };
+    upData.formData = { insertId:insertId }
     upFiles.upFilesFun(_this, upData, function (res) {
       if (res.index < upImgArr.length) {
         upImgArr[res.index]['progress'] = res.progress
@@ -282,17 +291,14 @@ Page({
           upImgArr: upImgArr,
         })
       } else {
-        let i = res.index - upImgArr.length;
+        let i = res.index - upImgArr.length
         upVideoArr[i]['progress'] = res.progress
         _this.setData({
           upVideoArr: upVideoArr,
         })
       }
       //   console.log(res)
-    }, function (arr) {
-      // success
-      console.log(arr)
-    })
+    }, success)
     //
   }
 })

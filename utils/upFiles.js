@@ -1,11 +1,11 @@
 
-var chooseImage = (t, count) =>{
+const chooseImage = (t, count) =>{
     wx.chooseImage({
         count: count,
         sizeType: ['original', 'compressed'],
         sourceType: ['album', 'camera'],
         success: (res) => {
-            var imgArr = t.data.upImgArr || [];
+            let imgArr = t.data.upImgArr || [];
             let arr = res.tempFiles;
             // console.log(res)
             arr.map(function(v,i){
@@ -26,9 +26,9 @@ var chooseImage = (t, count) =>{
                 })
             }
         },
-    });
+    })
 }
-var chooseVideo = (t,count) => {
+const chooseVideo = (t,count) => {
     wx.chooseVideo({
         sourceType: ['album', 'camera'],
         maxDuration: 30,
@@ -59,9 +59,9 @@ var chooseVideo = (t,count) => {
 }
 
 // 获取 图片数组 和 视频数组 以及合并数组
-var getPathArr = t => {
-    let imgarr = t.data.upImgArr || [];
-    let upVideoArr = t.data.upVideoArr || [];
+const getPathArr = t => {
+    let imgarr = t.data.upImgArr || []
+    let upVideoArr = t.data.upVideoArr || []
     let imgPathArr = [];
     let videoPathArr = [];
     imgarr.map(function (v, i) {
@@ -90,8 +90,8 @@ var getPathArr = t => {
  * success：上传完成之后
  */
 
-var upFilesFun = (t, data, progress, success) =>{
-    let _this = t;
+const upFilesFun = (t, data, progress, success) =>{
+    const _this = t;
     let url = data.url;
     let filesPath = data.filesPathsArr ? data.filesPathsArr : getPathArr(t);
     let name = data.name || 'file';
@@ -109,13 +109,13 @@ var upFilesFun = (t, data, progress, success) =>{
         name: name,
         formData: formData,
         success: function (res) {
-            var data = res.data
+            let data = res.data
             successNumber++;
             // console.log('success', successNumber)
             // console.log('success',res)
             // 把后台返回的地址链接存到一个数组
             let uploaded = t.data.uploadedPathArr || [];
-            var da = JSON.parse(res.data);
+            let da = JSON.parse(res.data);
             // console.log(da)
             if (da.code == 1001) {
                 // ### 此处可能需要修改 以获取图片路径
@@ -167,4 +167,4 @@ var upFilesFun = (t, data, progress, success) =>{
     })
 
 }
-module.exports = { chooseImage, chooseVideo, upFilesFun, getPathArr}
+module.exports = { chooseImage, chooseVideo, upFilesFun, getPathArr }
